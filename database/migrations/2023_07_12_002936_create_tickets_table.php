@@ -23,8 +23,6 @@ class CreateTicketsTable extends Migration
             $table->decimal('discount', 8, 2)->default(0);
             $table->string('start_station');
             $table->string('end_station');
-            $table->dateTime('start_time')->nullable();;
-            $table->dateTime('end_time')->nullable();;
             $table->integer('train_id');
             $table->string('train_name');
             $table->string('seat_cat');

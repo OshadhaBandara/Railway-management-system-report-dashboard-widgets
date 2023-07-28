@@ -133,7 +133,17 @@ $page_name = "Profile"
                     @endforeach
                   </div>
                   <!-- Departure Time -->
-                  <!-- <div class="departureTime">{{$item->start_time}}</div> -->
+                  <div class="departureTime">
+                    <?php
+                      foreach(explode(",",$item->stations) as $key=>$st){
+                        if($item->start_station==$st){
+                          $time = 20.00 * $key*60;
+                          $cal_time = strtotime($item->start_time)+$time;
+                          print(date("h:i a",$cal_time));
+                        }
+                      }
+                    ?>
+                  </div>
                 </div>
                 <div class="wr-destination fw-semibold text-md-end mt-1 mt-md-0">
                   <!-- Destination Station -->
@@ -143,7 +153,20 @@ $page_name = "Profile"
                     @endforeach
                   </div>
                   <!-- Destination Time -->
-                  <!-- <div class="destinationTime">{{$item->end_time}}</div> -->
+                  <div class="destinationTime">
+                  <?php
+                      foreach(explode(",",$item->stations) as $key=>$st){
+                        if($item->end_station==$st && count(explode(",",$item->stations))-1!=$key){
+                          $time = 20.00 * $key*60;
+                          $cal_time = strtotime($item->end_time)+$time;
+                          print(date("h:i a",$cal_time));
+                        }
+                        if($item->end_station==$st && count(explode(",",$item->stations))-1==$key){
+                          print(date("h:i a",strtotime($item->end_time)));
+                        }
+                      }
+                    ?>
+                  </div>
                 </div>
               </div>
 
